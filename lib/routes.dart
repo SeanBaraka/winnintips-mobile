@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:winnintips/screens/about_screen.dart';
 import 'package:winnintips/screens/archives_screen.dart';
 import 'package:winnintips/screens/home_screen.dart';
 import 'package:winnintips/screens/login_screen.dart';
@@ -14,5 +15,6 @@ final Map<String, WidgetBuilder> routes = {
   RegisterScreen.routeName: (context) => RegisterScreen(),
   HomeScreen.routeName: (context) => HomeScreen(),
   ProfileScreen.routeName: (context) => ProfileScreen(),
-  ArchivesScreen.routeName: (context) => ArchivesScreen()
+  ArchivesScreen.routeName: (context) => ArchivesScreen(),
+  AboutScreen.routeName: (context) => AboutScreen()
 };

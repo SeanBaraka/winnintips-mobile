@@ -22,7 +22,7 @@ class LabelLink extends StatelessWidget {
           child: Text(
             linkText,
             style: TextStyle(
-                fontSize: 20, color: prColor, fontWeight: FontWeight.bold),
+                fontSize: 20, color: brightOrange, fontWeight: FontWeight.bold),
           ),
         )
       ],

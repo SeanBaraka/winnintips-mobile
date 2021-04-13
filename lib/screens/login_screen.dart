@@ -82,6 +82,9 @@ class _LoginScreenState extends State<LoginScreen> {
                                 height: 30,
                               ),
                               DecoratedButton(
+                                text: "Sign In",
+                                primaryColor: prColor,
+                                textColor: bgColor,
                                 onPressed: () async{
                                   setState(() {
                                     isLoading = true;
@@ -120,7 +123,6 @@ class _LoginScreenState extends State<LoginScreen> {
                                   }
 
                                 },
-                                text: "Sign In",
                               ),
                               SizedBox(
                                 height: 20,

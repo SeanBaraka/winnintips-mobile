@@ -1,6 +1,9 @@
 import 'dart:convert';
 
+import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:jwt_decoder/jwt_decoder.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 const String serverUrl = "178.32.191.159:8000";
 const String loginUrl = "/api/users/login/";
@@ -54,4 +57,52 @@ Future<dynamic> userRegistration(Map<String, String> registrationInfo) async {
     var errorMessage = '{"message": "${registrationResponse.body}"}';
     return jsonDecode(errorMessage);
   }
+}
+
+Future<dynamic> getFeaturedMatch() async {
+  var url = Uri.http(serverUrl, featuredMatchUrl);
+
+  var featuredMatchResponse = await http.get(url);
+
+  return jsonDecode(featuredMatchResponse.body);
+}
+
+Future<dynamic> getRecentMatches() async {
+  var url = Uri.http(serverUrl, recentTipsUrl);
+
+  // attempt to get the tips from the repository
+  var tipsResponse = await http.get(url);
+
+  if (tipsResponse.statusCode == 200)  {
+    return jsonDecode(tipsResponse.body);
+  } else {
+    var error = '{"message": "Sorry, check your connection"}';
+    return jsonDecode(error);
+  }
+}
+
+Future<dynamic> getAllTips() async {
+  var url = Uri.http(serverUrl, tipsUrl);
+
+  var tipsResponse = await http.get(url);
+
+  if (tipsResponse.statusCode == 200) {
+    return jsonDecode(tipsResponse.body);
+  } else {
+    return jsonDecode("{'message': 'an error occurred'}");
+  }
+}
+
+Future<dynamic> getLoggedInUser() async {
+  // assuming the user is already logged in, we should have a token
+  // anyway, we don't even get to use this piece of code. what a waste.
+  var prefs = await SharedPreferences.getInstance();
+  var token = prefs.getString('winnintipsToken');
+
+  var uri = Uri.http(serverUrl, userProfile);
+  var profileRequest = await http.get(uri, headers: {
+    'Authorization': 'Bearer $token'
+  });
+
+  return jsonDecode(profileRequest.body);
 }

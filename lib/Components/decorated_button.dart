@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:winnintips/constants/colors.dart';
 
 class DecoratedButton extends StatelessWidget {
-  const DecoratedButton({Key key, this.text, this.onPressed}) : super(key: key);
+  const DecoratedButton({Key key, this.text, this.onPressed, this.primaryColor, this.textColor}) : super(key: key);
   final String text;
   final Function onPressed;
+  final Color primaryColor;
+  final Color textColor;
 
   @override
   Widget build(BuildContext context) {
@@ -16,10 +18,11 @@ class DecoratedButton extends StatelessWidget {
         child: Text(
           text,
           textAlign: TextAlign.center,
-          style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+          style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
         ),
       ),
-      style: ElevatedButton.styleFrom(primary: brightOrange, onPrimary: bgColor),
+      style: ElevatedButton.styleFrom(primary: primaryColor
+          , onPrimary: textColor),
     );
   }
 }
