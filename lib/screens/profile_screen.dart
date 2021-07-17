@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:in_app_purchase/in_app_purchase.dart';
 import 'package:winnintips/Components/decorated_button.dart';
 import 'package:winnintips/Components/top_view.dart';
 import 'package:winnintips/constants/colors.dart';
@@ -13,6 +14,9 @@ class ProfileScreen extends StatefulWidget {
 }
 
 class _ProfileScreenState extends State<ProfileScreen> {
+  final InAppPurchaseConnection _connection = InAppPurchaseConnection.instance;
+  List<PurchaseDetails> _purchases = [];
+
   @override
   void initState() {
     // TODO: implement initState
